@@ -1,6 +1,6 @@
-﻿using TMPPP_lab1.Domain.Entities;
+﻿using TMPPP.Domain.Entities;
 
-namespace TMPPP_lab1.Domain.Interfaces;
+namespace TMPPP.Domain.Interfaces;
 
 public interface ICoachRepository
 {

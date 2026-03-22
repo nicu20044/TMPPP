@@ -1,4 +1,6 @@
-﻿namespace TMPPP_lab1.Domain.Interfaces;
+﻿using TMPPP.Domain.Entities;
+
+namespace TMPPP.Domain.Interfaces;
 
 public interface IAthleteRepository
 {

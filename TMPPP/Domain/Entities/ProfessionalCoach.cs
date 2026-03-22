@@ -1,12 +1,12 @@
 ﻿namespace TMPPP.Domain.Entities;
 
-public abstract class Coach: User
+public class ProfessionalCoach : Coach
 {
     public string Specialization { get; private set; }
     public int YearsOfExperience { get; private set; }
 
-    public Coach(string name, string specialization, int yearsOfExperience)
-        : base(name)
+    public ProfessionalCoach(string name, string specialization, int yearsOfExperience)
+        : base(name, specialization, yearsOfExperience)
     {
         Specialization = specialization;
         YearsOfExperience = yearsOfExperience;

@@ -1,4 +1,4 @@
-﻿namespace TMPPP_lab1.Domain.Entities;
+﻿namespace TMPPP.Domain.Entities;
 
 public class Exercise
 {

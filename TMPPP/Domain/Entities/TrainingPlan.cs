@@ -1,6 +1,8 @@
-﻿namespace TMPPP_lab1.Domain.Entities;
+﻿using TMPPP.Domain.Interfaces;
 
-public class TrainingPlan
+namespace TMPPP.Domain.Entities;
+
+public class TrainingPlan : IPrototype
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; }
@@ -19,5 +21,11 @@ public class TrainingPlan
     public void AddExercise(Exercise exercise)
     {
         _exercises.Add(exercise);
+    }
+
+    public string GetName() => Name;
+    public IPrototype Clone()
+    {
+        return new TrainingPlan(this.Name, this.Coach);
     }
 }
