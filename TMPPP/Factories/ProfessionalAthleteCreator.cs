@@ -10,6 +10,7 @@ public class ProfessionalAthleteCreator : AthleteCreator
         return new ProfessionalAthlete(
             dto.Name,
             dto.SportType,
-            dto.Ranking);
+            dto.Ranking,
+            dto.MedicalStatus);
     }
 }

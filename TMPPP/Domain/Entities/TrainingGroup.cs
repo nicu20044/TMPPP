@@ -4,6 +4,7 @@ namespace TMPPP.Domain.Entities;
 
 public class TrainingGroup : ITrainingComponent
 {
+    public int Id { get; private set; }
     private readonly List<ITrainingComponent> _children = new();
     public string Name { get; private set; }
     public string Description { get; private set; }
@@ -43,6 +44,7 @@ public class TrainingGroup : ITrainingComponent
         {
             total += child.GetTotalDuration();
         }
+
         return total;
     }
 
@@ -66,7 +68,7 @@ public class TrainingGroup : ITrainingComponent
     {
         string indent = new string('-', depth * 2);
         Console.WriteLine($"{indent}{Name} (Total: {GetTotalDuration()} min)");
-        
+
         if (!string.IsNullOrEmpty(Description))
         {
             Console.WriteLine($"{indent} {Description}");

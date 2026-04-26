@@ -12,4 +12,5 @@ public abstract class User
         Id = Guid.NewGuid();
         Name = name;
     }
+    protected User() { }//ef
 }

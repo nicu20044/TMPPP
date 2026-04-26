@@ -4,6 +4,7 @@ namespace TMPPP.Domain.Entities;
 
 public class TrainingExercise : ITrainingComponent
 {
+    public int Id { get; private set; }
     public string Name { get; private set; }
     public int Duration { get; private set; }
     public string Description { get; private set; }

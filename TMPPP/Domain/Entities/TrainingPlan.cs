@@ -11,6 +11,10 @@ public class TrainingPlan : IPrototype
     private readonly List<Exercise> _exercises = new();
     public IReadOnlyCollection<Exercise> Exercises => _exercises.AsReadOnly();
 
+    private TrainingPlan() 
+    { 
+        // EF are nevoie de acesta pentru a instanția obiectul la citirea din SQL
+    }
     public TrainingPlan(string name, Coach coach)
     {
         Id = Guid.NewGuid();

@@ -1,4 +1,5 @@
 ﻿using TMPPP.Domain.Interfaces;
+using ILogger = TMPPP.Domain.Interfaces.ILogger;
 
 namespace TMPPP.Infrastructure.Logging;
 

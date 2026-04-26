@@ -6,7 +6,7 @@ namespace TMPPP.Factories;
 public class ProfessionalSportsFactory : ISportsFactory
 {
     public Athlete CreateAthlete(AthleteCreatorDTO dto)
-        => new ProfessionalAthlete(dto.Name, dto.SportType, dto.Ranking);
+        => new ProfessionalAthlete(dto.Name, dto.SportType, dto.Ranking,dto.MedicalStatus);
 
     public Coach CreateCoach(CoachCreatorDTO coachDto)
         => new ProfessionalCoach(coachDto.Name, coachDto.Specialization, coachDto.YearsOfExperience);
