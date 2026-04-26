@@ -25,7 +25,6 @@ namespace TMPPP.Migrations
             modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
                 {
                     b.Property<Guid>("AthleteId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AthleteName")
@@ -239,6 +238,15 @@ namespace TMPPP.Migrations
                     b.HasBaseType("TMPPP.Domain.Entities.Coach");
 
                     b.ToTable("ProfessionalCoaches", (string)null);
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Athlete", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.AthleteStatistics", "AthleteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.Exercise", b =>

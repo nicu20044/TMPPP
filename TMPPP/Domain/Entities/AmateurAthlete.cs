@@ -2,11 +2,14 @@
 
 public class AmateurAthlete : Athlete
 {
-    public string SportType { get; set; }
-    public AmateurAthlete(string name, string sportType, string medicalStatus)
-        : base(name, sportType, medicalStatus) {}
+    public AmateurAthlete(string name, string sportType, string medicalStatus,string email)
+        : base(name, sportType, medicalStatus, email)
+    {}
 
-    private AmateurAthlete() : base() { }//ef
+    private AmateurAthlete(string sportType) : base()
+    {
+        SportType = sportType;
+    }//ef
     public override void Train()
     {
         Console.WriteLine("Amateur training session.");
@@ -14,6 +17,6 @@ public class AmateurAthlete : Athlete
 
     public override Athlete Clone()
     {
-        return new AmateurAthlete(this.Name, this.SportType, this.MedicalStatus);
+        return new AmateurAthlete(this.Name, this.SportType, this.MedicalStatus,this.Email);
     }
 }

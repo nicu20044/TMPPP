@@ -11,6 +11,7 @@ public class ProfessionalAthleteCreator : AthleteCreator
             dto.Name,
             dto.SportType,
             dto.Ranking,
-            dto.MedicalStatus);
+            dto.MedicalStatus,
+            dto.Email);
     }
 }

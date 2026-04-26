@@ -1,0 +1,66 @@
+﻿@using TMPPP.Domain.Entities
+@model IEnumerable<TMPPP.Domain.Entities.Athlete>
+
+    @{
+    ViewData["Title"] = "Lista Sportivi";
+    }
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>🏃 Gestiune Sportivi</h2>
+            <a asp-action="Create" class="btn btn-dark shadow"> 
+                <i class="bi bi-plus-circle me-2"></i> Adaugă Sportiv Nou
+            </a>
+        </div>
+
+        @if (TempData["Message"] != null)
+        {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        }
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Nume</th>
+                        <th>Sport</th>
+                        <th>Nivel / Tip Obiect</th>
+                        <th>Status Medical</th>
+                        <th class="text-center">Acțiuni</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="ps-4 fw-bold">@item.Name</td>
+                        <td>@item.SportType</td>
+                        <td>
+                            @if (item is ProfessionalAthlete pro)
+                            {
+                            <span class="badge bg-danger">Professional</span>
+                            <small class="text-muted d-block" style="font-size: 10px;">Ranking: @pro.Ranking</small>
+                            }
+                            else
+                            {
+                            <span class="badge bg-info text-dark">Amateur</span>
+                            }
+                        </td>
+                        <td>
+                                <span class="badge rounded-pill bg-light text-dark border">
+                                    @item.MedicalStatus
+                                </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary">Detalii</button>
+                        </td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

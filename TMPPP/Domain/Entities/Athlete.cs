@@ -8,8 +8,8 @@ public abstract class Athlete : User
     public decimal SubscriptionBalance { get; set; }
 
 
-    protected Athlete(string name, string sportType, string medicalStatus)
-        : base(name)
+    protected Athlete(string name, string sportType, string medicalStatus,string email)
+        : base(name,email)
     {
         SportType = sportType;
         MedicalStatus = medicalStatus;

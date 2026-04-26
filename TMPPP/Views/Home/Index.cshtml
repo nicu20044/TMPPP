@@ -1,0 +1,32 @@
+﻿@{
+ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5 text-center">
+    <h1 class="display-4 fw-bold mb-4">Sistem Management Sportiv</h1>
+    <p class="lead mb-5">Demonstrație Design Patterns: Factory, Builder, Prototype</p>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 bg-light p-4">
+                <div class="display-5 mb-3">🛠️</div>
+                <h3>Configurator Sportivi</h3>
+                <p class="text-muted">Adaugă sportivi folosind Factory Method sau Builder.</p>
+                <a asp-controller="Athletes" asp-action="Create" class="btn btn-primary btn-lg w-100 mt-3">
+                    Mergi la Configurare
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 bg-light p-4">
+                <div class="display-5 mb-3">📋</div>
+                <h3>Planuri Antrenament</h3>
+                <p class="text-muted">Gestionează și clonează planuri folosind Prototype.</p>
+                <a asp-controller="TrainingPlans" asp-action="Index" class="btn btn-success btn-lg w-100 mt-3">
+                    Vezi Planuri
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

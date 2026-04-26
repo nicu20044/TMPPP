@@ -1,0 +1,127 @@
+﻿@model TMPPP.Domain.Entities.Athlete
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="display-6 fw-bold text-primary">Înregistrare Sportiv Nou</h2>
+        <p class="text-muted">Demonstrație Design Patterns: Factory Method vs Builder</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow border-primary">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="mb-0"><i class="bi bi-gear-fill me-2"></i> Factory Method Pattern</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-info py-2 small">
+                        <strong>Logică:</strong> Delegăm instanțierea către un obiect Creator specializat.
+                    </div>
+
+                    <form asp-action="CreateWithFactory" method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nume Complet</label>
+                            <input type="text" name="name" class="form-control" placeholder="Ex: Andrei Ionescu" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="email@exemplu.com" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ramură Sportivă</label>
+                            <input type="text" name="sportType" class="form-control" placeholder="Ex: Fotbal" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Status Medical</label>
+                            <select name="medicalStatus" class="form-select border-primary">
+                                <option value="Apt">Fit</option>
+                                <option value="Indisponibil">Injured</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tip Creator</label>
+                            <select name="level" class="form-select border-primary">
+                                <option value="Amateur">AmateurAthleteCreator</option>
+                                <option value="Professional">ProfessionalAthleteCreator</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ranking (Doar Pro)</label>
+                            <input type="number" name="ranking" class="form-control" value="0" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-3 shadow-sm">
+                            <i class="bi bi-play-circle me-1"></i> Execută FactoryMethod()
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow border-success">
+                <div class="card-header bg-success text-white py-3">
+                    <h5 class="mb-0"><i class="bi bi-hammer me-2"></i> Builder Pattern</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-success py-2 small">
+                        <strong>Logică:</strong> Construim obiectul pas cu pas prin apeluri înlănțuite.
+                    </div>
+
+                    <form asp-action="CreateWithBuilder" method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nume Sportiv</label>
+                            <input type="text" name="name" class="form-control" placeholder="Ex: Maria Popescu" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="maria@test.com" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Sport</label>
+                            <input type="text" name="sportType" class="form-control" placeholder="Ex: Baschet" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Status Medical</label>
+                            <select name="medicalStatus" class="form-select border-success">
+                                <option value="Apt">Fit</option>
+                                <option value="Indisponibil">Injured</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Configurație (Abstract Factory)</label>
+                            <select name="level" class="form-select border-success">
+                                <option value="Amateur">Amateur</option>
+                                <option value="Professional">Pro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ranking Inițial</label>
+                            <input type="number" name="ranking" class="form-control" value="0" />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 mt-3 shadow-sm">
+                            <i class="bi bi-hammer me-1"></i> builder.Build()
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+        <hr />
+        <a asp-action="Index" class="btn btn-outline-secondary px-4">
+            <i class="bi bi-arrow-left"></i> Înapoi la Lista de Sportivi
+        </a>
+    </div>
+</div>

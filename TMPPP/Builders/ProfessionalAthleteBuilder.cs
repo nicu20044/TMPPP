@@ -12,11 +12,26 @@ namespace TMPPP.Builders;
 
         public ProfessionalAthleteBuilder(ISportsFactory factory) => _factory = factory;
 
-        public void Reset() => _dto = new AthleteCreatorDTO();
+        public void Reset() 
+        {
+            _dto = new AthleteCreatorDTO();
+            _dto.MedicalStatus = "Apt"; 
+        }
         public IAthleteBuilder SetName(string name) { _dto.Name = name; return this; }
         public IAthleteBuilder SetSport(string sport) { _dto.SportType = sport; return this; }
 
-        public IAthleteBuilder SetRanking(int? ranking) { _dto.Ranking = (int)ranking; return this; }
+        public IAthleteBuilder SetRanking(int ranking) { _dto.Ranking = ranking; return this; }
+        
+        public IAthleteBuilder SetEmail(string email) {
+            _dto.Email = email;
+            return this;
+        }
+
+        public IAthleteBuilder SetMedicalStatus(string medicalStatus)
+        {
+            _dto.MedicalStatus = medicalStatus;
+            return this;
+        }
 
         public Athlete Build() => _factory.CreateAthlete(_dto);
     }

@@ -12,8 +12,8 @@ using TMPPP.Infrastructure.Data;
 namespace TMPPP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260426114040_4")]
-    partial class _4
+    [Migration("20260426151344_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,6 @@ namespace TMPPP.Migrations
             modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
                 {
                     b.Property<Guid>("AthleteId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AthleteName")
@@ -242,6 +241,15 @@ namespace TMPPP.Migrations
                     b.HasBaseType("TMPPP.Domain.Entities.Coach");
 
                     b.ToTable("ProfessionalCoaches", (string)null);
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Athlete", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.AthleteStatistics", "AthleteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.Exercise", b =>

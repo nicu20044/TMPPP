@@ -4,8 +4,8 @@ namespace TMPPP.Domain.Entities;
 
 public class TrainingPlan : IPrototype
 {
-    public Guid Id { get; private set; }
-    public string Name { get; private set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
     public Coach Coach { get; private set; }
 
     private readonly List<Exercise> _exercises = new();

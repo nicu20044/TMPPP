@@ -12,8 +12,8 @@ using TMPPP.Infrastructure.Data;
 namespace TMPPP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260426113113_third")]
-    partial class third
+    [Migration("20260426152422_sec")]
+    partial class sec
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,6 @@ namespace TMPPP.Migrations
             modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
                 {
                     b.Property<Guid>("AthleteId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AthleteName")
@@ -162,14 +161,6 @@ namespace TMPPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AthleteType")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("CoachType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -183,11 +174,9 @@ namespace TMPPP.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
-                    b.HasDiscriminator<string>("AthleteType").HasValue("User");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.Athlete", b =>
@@ -206,7 +195,7 @@ namespace TMPPP.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasDiscriminator().HasValue("Athlete");
+                    b.ToTable("Athletes", (string)null);
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.Coach", b =>
@@ -220,14 +209,14 @@ namespace TMPPP.Migrations
                     b.Property<int>("YearsOfExperience")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Coach");
+                    b.ToTable("Coaches", (string)null);
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.AmateurAthlete", b =>
                 {
                     b.HasBaseType("TMPPP.Domain.Entities.Athlete");
 
-                    b.HasDiscriminator().HasValue("Amateur");
+                    b.ToTable("AmateurAthletes", (string)null);
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.ProfessionalAthlete", b =>
@@ -237,21 +226,30 @@ namespace TMPPP.Migrations
                     b.Property<int>("Ranking")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Pro");
+                    b.ToTable("ProfessionalAthletes", (string)null);
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.AmateurCoach", b =>
                 {
                     b.HasBaseType("TMPPP.Domain.Entities.Coach");
 
-                    b.HasDiscriminator().HasValue("AmateurCoach");
+                    b.ToTable("AmateurCoaches", (string)null);
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.ProfessionalCoach", b =>
                 {
                     b.HasBaseType("TMPPP.Domain.Entities.Coach");
 
-                    b.HasDiscriminator().HasValue("ProCoach");
+                    b.ToTable("ProfessionalCoaches", (string)null);
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.AthleteStatistics", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Athlete", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.AthleteStatistics", "AthleteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.Exercise", b =>
@@ -270,6 +268,60 @@ namespace TMPPP.Migrations
                         .IsRequired();
 
                     b.Navigation("Coach");
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.Athlete", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.Athlete", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.Coach", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.Coach", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.AmateurAthlete", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Athlete", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.AmateurAthlete", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.ProfessionalAthlete", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Athlete", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.ProfessionalAthlete", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.AmateurCoach", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Coach", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.AmateurCoach", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMPPP.Domain.Entities.ProfessionalCoach", b =>
+                {
+                    b.HasOne("TMPPP.Domain.Entities.Coach", null)
+                        .WithOne()
+                        .HasForeignKey("TMPPP.Domain.Entities.ProfessionalCoach", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TMPPP.Domain.Entities.TrainingPlan", b =>

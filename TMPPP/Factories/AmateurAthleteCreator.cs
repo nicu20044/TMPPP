@@ -10,6 +10,7 @@ public class AmateurAthleteCreator : AthleteCreator
         return new AmateurAthlete(
             dto.Name,
             dto.SportType,
-            dto.MedicalStatus);
+            dto.MedicalStatus,
+            dto.Email);
     }
 }

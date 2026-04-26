@@ -1,0 +1,22 @@
+﻿<table class="table align-middle shadow-sm">
+    <thead class="table-dark">
+    <tr>
+        <th>Nume Plan</th>
+        <th>Acțiuni Pattern</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var plan in Model) {
+    <tr>
+        <td class="fw-bold">@plan.Name</td>
+        <td>
+            <form asp-action="Clone" asp-route-id="@plan.Id" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-warning btn-sm shadow-sm">
+                    <i class="bi bi-files me-1"></i> Clonare (Prototype)
+                </button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
